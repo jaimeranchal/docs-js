@@ -1,0 +1,90 @@
+site_name: Micro-Laravel
+# repo_url: https://github.com/jaimeranchal/ohdaw 
+site_description: Notas rápidas sobre Laravel 8.x
+site_author: Jaime Ranchal
+dev_addr: '127.0.0.1:8002'
+
+# Ajustes del tema
+theme:
+    language: es
+    name: material
+    features:
+        - navigation.tabs # 'tabs' en versiones más recientes
+    palette:
+        scheme: default
+        primary: deep purple
+        accent: indigo
+    font:
+        text: Nunito
+        code: Fira Code
+    icon:
+        logo: material/book-open-blank-variant
+
+# Extensiones
+markdown_extensions:
+    - toc:
+        permalink: True
+    - admonition
+    - def_list
+    - pymdownx.details
+    # - pymdownx.highlight
+    - pymdownx.tabbed
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - pymdownx.keys
+    - pymdownx.snippets:
+        base_path: '/home/jaime/Desarrollo/Docs/Laravel/docs/'
+        check_paths: true
+# Plugins
+plugins:
+    - search
+    - print-site
+
+# Extra
+extra_javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js
+    - extra/js/config.js
+extra_css:
+    - extra/css/extra.css
+    - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/atelier-lakeside-light.min.css
+
+# Árbol de documentos
+nav:
+    - Inicio: 'index.md'
+    - Fundamentos: 
+        - 'Hola mundo': 'basics/fundamentos.md'
+        - Sintaxis: 'basics/sintaxis.md'
+        - Variables: 'basics/variables.md'
+        - 'Tipos básicos': 'basics/tipos.md'
+        - Operadores: 'basics/operadores.md'
+        - 'Comparar variables': 'basics/comparar.md'
+        - Condicionales: 'basics/condicionales.md'
+        - Switch: 'basics/switch.md'
+        - Bucles: 'basics/bucles.md'
+    - 'Tipos de Datos':
+        - Arrays: 'datatypes/dt.arrays.md'
+        - 'RegEx': 'datatypes/regex.md'
+    - Funciones: 
+        - Introducción: 'functions/funciones.md' 
+        - 'Expresiones de función': 'functions/funciones.expr.md'
+        - Retrollamada: 'functions/funciones-callback.md'
+        - 'Funciones flecha': 'functions/funciones-flecha.md'
+    - POO:
+        - Introducción: 'poo/obj.intro.md'
+        - 'Objetos de primer nivel': 'poo/obj.primer_nivel.md'
+        - 'Objetos Nativos': 'poo/obj.nativos.md'
+        - Métodos: 'poo/obj.metodos.md'
+        - Clases: 'poo/clases.md'
+    - Navegador:
+      - 'Manejo del DOM': 'browser/DOM.md'
+      - Formularios: 
+          - 'Manejo básico': 'browser/formularios.md'
+          - Captchas: 'Conceptos/captchas.md'
+      - Cookies: 'browser/cookies.md'
+      - Eventos: 'browser/eventos.md'
+    - jQuery:
+        - Introducción: 'jQuery/jQuery-intro.md'
+        - 'Manejo del DOM': 'jQuery/jQuery-dom.md'
+        - Efectos: 'jQuery/jQuery-efectos.md'
+        - Métodos: 'jQuery/jQuery-html.md'
+        - Ajax: 'jQuery/jQuery-ajax.md'
