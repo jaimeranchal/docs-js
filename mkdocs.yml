@@ -58,34 +58,35 @@ nav:
     - Fundamentos: 
         - 'Hola mundo': 'basics/fundamentos.md'
         - Sintaxis: 'basics/sintaxis.md'
-        - Variables: 'basics/variables.md'
-        - 'Tipos básicos': 'basics/tipos.md'
+        - Variables:
+            - 'basics/variables.md'
+            - 'Comparar variables': 'basics/comparar.md'
         - Operadores: 'basics/operadores.md'
-        - 'Comparar variables': 'basics/comparar.md'
-        - Condicionales: 'basics/condicionales.md'
-        - Switch: 'basics/switch.md'
-        - Bucles: 'basics/bucles.md'
-    - 'Tipos de Datos':
-        - Arrays: 'datatypes/dt.arrays.md'
-        - 'RegEx': 'datatypes/regex.md'
+        - 'Tipos de Datos':
+            - 'Tipos básicos': 'basics/tipos.md'
+            - Arrays: 'datatypes/dt.arrays.md'
+            - 'RegEx': 'datatypes/regex.md'
+        - Lógica: 
+            - condicionales: 'basics/condicionales.md'
+            - Switch: 'basics/switch.md'
+            - Bucles: 'basics/bucles.md'
     - Funciones: 
         - Introducción: 'functions/funciones.md' 
-        - 'Expresiones de función': 'functions/funciones.expr.md'
-        - Retrollamada: 'functions/funciones-callback.md'
-        - 'Funciones flecha': 'functions/funciones-flecha.md'
+        - Declaración:
+            - 'Expresiones de función': 'functions/funciones.expr.md'
+            - 'Funciones flecha': 'functions/funciones-flecha.md'
+        - Callback: 'functions/funciones-callback.md'
     - POO:
-        - Introducción: 'poo/obj.intro.md'
-        - 'Objetos de primer nivel': 'poo/obj.primer_nivel.md'
-        - 'Objetos Nativos': 'poo/obj.nativos.md'
+        - Objetos:
+            - Introducción: 'poo/obj.intro.md'
+            - 'Objetos de primer nivel': 'poo/obj.primer_nivel.md'
+            - 'Objetos Nativos': 'poo/obj.nativos.md'
         - Métodos: 'poo/obj.metodos.md'
         - Clases: 'poo/clases.md'
-    - Navegador:
-      - 'Manejo del DOM': 'browser/DOM.md'
-      - Formularios: 
-          - 'Manejo básico': 'browser/formularios.md'
-          - Captchas: 'Conceptos/captchas.md'
-      - Cookies: 'browser/cookies.md'
-      - Eventos: 'browser/eventos.md'
+    - '¿Para qué se usa JS?':
+        - 'Manipular el DOM': 'browser/DOM.md'
+        - Cookies: 'browser/cookies.md'
+        - Eventos: 'browser/eventos.md'
     - jQuery:
         - Introducción: 'jQuery/jQuery-intro.md'
         - 'Manejo del DOM': 'jQuery/jQuery-dom.md'
@@ -96,3 +97,5 @@ nav:
         - 'Ajax + jquery': 'ajax/ajax-jquery.md'
     - Ejemplos:
         - Ajax: 'examples/ajax-ex.md'
+        - Formularios: 'browser/formularios.md'
+        - Captchas: 'Conceptos/captchas.md'
