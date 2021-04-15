@@ -1,70 +1,102 @@
 # Interactuar con Servidores: AJAX
 
-- Se establece la conexión
-- Los datos se pueden leer con el método `GET` o con `POST`:
+Con JavaScript se pueden enviar peticiones al servidor y procesar la respuesta, para recuperar datos y mostrarla en una tabla o autocompletar un formulario por ejemplo.
+
+Para ello usamos AJAX. El proceso es el siguiente:
+
+1. Crear un objeto xmlHttp que recoja la **conexión**
+2. Solicitar la información con GET o POST
+    1. Comprobar que la conexión no devuelve _undefined_
+    2. Crear un objeto XMLHttpRequest
+    3. **Abrir** la conexión, con o sin **parámetros**
+    4. Definir qué vas a hacer con la **respuesta** (mostrarla, pasarla a otro método...)
+    5. **Enviar** la petición
 
 === "Conexión"
-    ```javascript
-    function crearConexion() {
-        let objeto;
+    !!! note "Modularizar"
+        Es más práctico tener una función para conectarse a la base de datos en un archivo separado, junto con las librerías.
 
-        if (window.XMLHttpRequest) {
-            objeto = new XMLHttpRequest();
-        } else if (window.ActiveXObject) {
-            try {
-                objeto = new ActiveXObject("MSXML2.XMLHTTP");
-            } catch(e) {
-                objeto = new ActiveXObject("Microsoft.XMLHTTP");
+    === "lib/connect.js"
+        ```javascript
+        function crearConexion() {
+            let objeto;
+
+            if (window.XMLHttpRequest) {
+                objeto = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                try {
+                    objeto = new ActiveXObject("MSXML2.XMLHTTP");
+                } catch(e) {
+                    objeto = new ActiveXObject("Microsoft.XMLHTTP");
+                }
             }
-        }
 
-        return objeto;
-    }
-    ```
+            return objeto;
+        }
+        ```
+    === "main.js"
+        ```javascript
+        let xmlHttp;
+
+        // cargamos con la página
+        $(()=>{
+            // crear objeto xmlHttp
+            xmlHttp = crearConexion();
+
+            if (xmlHttp!=undefined) {
+                // seguimos
+                $("#boton").on('click', mostrarMensaje);
+            } else {
+                swal.fire("El navegador no soporta AJAX"+
+                        " La página no tendrá funcionalidad");
+            }
+        })
+        ```
 === "GET"
-    ```javascript
-    function mensajeGet() {
-        // crear un objeto XMLHttpRequest
-        let xmlHttp = crearConexion();
+    === "Simple"
+        ```javascript
+        function mensajeGet() {
+            // crear un objeto XMLHttpRequest
+            let xmlHttp = crearConexion();
 
-        // abrir la conexión sin parámetros
-        xmlHttp.open("GET", "origen.php", true); 
+            // abrir la conexión sin parámetros
+            xmlHttp.open("GET", "origen.php", true); 
 
-        // preparar la respuesta
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4 &&
-                xmlHttp.status == 200) {
+            // preparar la respuesta
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4 &&
+                    xmlHttp.status == 200) {
 
-                $("#mensaje").text(xmlHttp.responseText);
+                    $("#mensaje").text(xmlHttp.responseText);
+                }
             }
+
+            // iniciar la conexión
+            xmlHttp.send();
         }
+        ```
+    === "Con parámetros"
+        ```javascript
+        function mensajeGet() {
+            // crear un objeto XMLHttpRequest
+            let xmlHttp = crearConexion();
 
-        // iniciar la conexión
-        xmlHttp.send();
-    }
-    ```
-=== "GET + parámetros"
-    ```javascript
-    function mensajeGet() {
-        // crear un objeto XMLHttpRequest
-        let xmlHttp = crearConexion();
+            // abrir la conexión con parámetros
+            xmlHttp.open("GET", "origen.php?valor=GET&param=valor", true); 
 
-        // abrir la conexión con parámetros
-        xmlHttp.open("GET", "origen.php?valor=GET&param=valor", true); 
+            // preparar la respuesta
+            xmlHttp.onreadystatechange = () => {
+                if (xmlHttp.readyState == 4 &&
+                    xmlHttp.status == 200) {
 
-        // preparar la respuesta
-        xmlHttp.onreadystatechange = () => {
-            if (xmlHttp.readyState == 4 &&
-                xmlHttp.status == 200) {
-
-                $("#mensaje").text(xmlHttp.responseText);
+                    $("#mensaje").text(xmlHttp.responseText);
+                }
             }
-        }
 
-        // iniciar la conexión
-        xmlHttp.send();
-    }
-    ```
+            // iniciar la conexión
+            xmlHttp.send();
+        }
+        ```
 === "POST"
     ```javascript
     function mensajePost() {
@@ -91,6 +123,50 @@
         // iniciar la conexión con los parámetros
         xmlHttp.send("valor=POST&param=valor");
     }
+    ```
+
+!!! note "GET vs POST"
+    Si se usa el método `POST` hay que cambiar **dos cosas**:
+
+    1. **enviar la cabecera** HTTP explícitamente después de abrir la conexión
+    2. pasar los **parámetros** en el método `send()` y no en `open()`
+
+## Tipos de respuesta
+
+El servidor puede mandar los datos en diferentes formatos, y se manejan de modo distinto. Son **tres tipos**:
+
+- **xml**: con `responseXML`
+- **texto plano** y **json**: con `responseText`
+
+=== "responseXML"
+    ```javascript
+    let datos = xmlHttp.responseXML;
+    // cadena en blanco
+    let mensaje = "";
+    // busca y añade los datos al mensaje
+    $(datos).find("selector").each((ind,ele) => {
+        if (ind == 1) {
+            // búsca dentro de ese elemento
+            $(ele).find("selector").each((index,mod)=>{
+                mensaje+=$(mod).text();
+            })
+
+            // ...
+        }
+    })
+    // muestra los datos
+    $("selector").html(mensaje);
+    
+    ```
+=== "responseText"
+    ```javascript
+    /* Texto plano */
+    let respuesta = xmlHttp.responseText;
+    /* Json */
+    let datos = JSON.parse(xmlHttp.responseText);
+    $(datos.data).each((ind,ele)=>{
+        // ...
+    });
     ```
 
 ## El objeto XMLHttpRequest

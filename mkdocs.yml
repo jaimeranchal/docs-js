@@ -1,4 +1,4 @@
-site_name: Micro-Laravel
+site_name: microDocs - JS
 # repo_url: https://github.com/jaimeranchal/ohdaw 
 site_description: Notas rápidas sobre Laravel 8.x
 site_author: Jaime Ranchal
@@ -6,6 +6,8 @@ dev_addr: '127.0.0.1:8002'
 
 # Ajustes del tema
 theme:
+    logo: extra/img/favicon.ico
+    favicon: extra/img/favicon.ico
     language: es
     name: material
     features:
@@ -92,3 +94,5 @@ nav:
     - AJAX:
         - Conectar: 'ajax/ajax.md'
         - 'Ajax + jquery': 'ajax/ajax-jquery.md'
+    - Ejemplos:
+        - Ajax: 'examples/ajax-ex.md'
