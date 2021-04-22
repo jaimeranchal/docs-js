@@ -95,6 +95,7 @@ nav:
     - AJAX:
         - Conectar: 'ajax/ajax.md'
         - 'Ajax + jquery': 'ajax/ajax-jquery.md'
+        - Fetch: 'ajax/api-fetch.md'
     - Ejemplos:
         - Ajax: 'examples/ajax-ex.md'
         - Formularios: 'browser/formularios.md'
