@@ -60,21 +60,29 @@ $("#test").hide() // oculta todos los elementos con la id `test`
 
 Para impedir que el código jQuery se ejecute _antes_ de que el documento termine de cargarse, los métodos se insertan dentro de una función:
 
-=== "Document.ready"
+=== "Completa"
     ```javascript
     $(document).ready(function(){
 
-      // métodos jQuery 
+      // ...
 
     });
     ```
-=== "Mínimo"
+=== "Reducida"
     ```javascript
     $(function(){
 
-      // métodos jQuery 
+      // ...
 
     });
+    ```
+=== "Mínima"
+    ```javascript
+    $((){
+
+        // ...
+
+    })
     ```
 
 ### Selectores
@@ -97,6 +105,9 @@ Sirven para encontrar elementos HTML.
     $('.clase')   // todos los elementos con la clase x
     $('#id')      // todos los elementos con esa id
     $('p:empty')  // todos los <p> vacíos
+
+    /* Atributos */
+
     $('img[alt]') // todos los <img> con atributo "alt"
     $(':button[id*=boton]') // todos los <button> cuyo "id" sea 'boton'
     $('a[href$=.pdf]') // todos los <a> cuyo "href" acabe en 'pdf'
@@ -104,6 +115,7 @@ Sirven para encontrar elementos HTML.
     ```
 === "jquery"
     ```javascript
+    /* Posición */
     $('p:first')            // primer <p>
     $('p:last')             // último <p>
     $('li:first-child')     // todos los <li> primeros hijos
@@ -115,16 +127,24 @@ Sirven para encontrar elementos HTML.
     $('p:eq(1)')            // segundo <p> (asumiendo que el primero es 0)
     $('p:gt(1)')            // todos los <p> a partir de la 2 posicion
     $('p:lt(1)')            // todos los <p> antes de las 2 posicion
+
+    /* Contenido */
     $('p:contains(texto)')  // todos los <p> con 'texto'
     ```
 === "formulario"
     ```javascript
     $('input') // todos los input
-    // todos los input con el atributo indicado tras los dos puntos
+    ```
+
+    Como buscar _inputs_ es algo que se hace a menudo, jQuery incluye una notación especial reducida para seleccionar tipos de inputs:
+
+    ```javascript
+    /* Selecciona todos los input con el atributo indicado tras los dos puntos */
     $(':text')
     $(':checkbox')
     $(':button')
-    ...
+    
+    /* Selecciona inputs por su estado */
     $(':enabled') // todos los elementos activados
     $(':disabled') // todos los elementos desactivados
     $(':checked') // ¿está seleccionado? (radiobutton + checkbox)
@@ -135,92 +155,3 @@ Sirven para encontrar elementos HTML.
         $('select option:selected').text() // valor de la opción selecc.
         $('select option:selected').prop("value") // valor
     ```
-
-### Funciones
-
-=== "Filtros"
-    ```javascript
-    $.not()              // Elementos que no cumplen los criterios
-    $.filter()           // filtra o busca una selección de elementos
-    $.slice(inicio, fin) // extrae una selección de elementos
-    $.find()             // Busca y extrae una selección de elementos
-    ```
-    ```javascript
-    // aplica borde rojo a los divs que no son verdes ni tienen id=azul
-    $('div').not('.verde, #azul').css('border-color', 'red')
-    // fondo azul a todos los e. con clase 'div1'
-    $('div').filter(".div1").css('background-color', 'blue');
-    // selecciona todos los <p> y filtra sólo el tercer párrafo
-    $('p').slice(2,3);
-    // fondo azul a todos los e. con clase 'div1'
-    $('div').find(".div1").css('background-color', 'blue');
-    
-    ```
-=== "Añadir contenido"
-=== "Eliminar"
-=== "Atributos"
-=== "Atributos"
-=== "css"
-=== "Bucles"
-
-#### Bucles automáticos
-
-Cuando se aplica una función jQuery a una **selección de elementos** no hace falta generar un bucle; se aplica automáticamente
-
-```javascript
-$('.misBotones').hide();
-// oculta TODOS los botones con la clase ".misBotones"
-```
-
-#### Encadenar funciones
-
-jQuery permite _apilar_ funciones una detrás de otra, que se ejecutarán en sucesión a la selección
-
-```javascript
-$('.misBotones').width(300).heigth(300).text('Hola').fadeIn(1000);
-//  En este ejemplo se selecciona todos los elementos cuya clase es ‘misBotones’ y automáticamente se le aplican cuatro funciones.
-
-// Otra forma:
-$('.misBotones').width(300)
-.heigth(300)
-.text('Hola')
-.fadeIn(1000);
-```
-
-### Eventos
-
-jQuery crea sus propios **métodos** para los eventos del DOM
-
-```javascript
-$("p").click(); // asigna un evento 'click' a un párrafo
-
-$("p").click(){
-    // acción a realizar cuando hagas click en el párrafo
-};
-```
-
-#### Comunes
-
-```javascript
-// El documento ha terminado de cargar
-$(document).ready()
-// Click simple sobre un elemento ( igual que onclick )
-on()
-// Doble clic
-dbclick()
-// El puntero _entra_ en un elemento HTML
-mouseenter()
-// El puntero _sale_ de un elemento HTML
-mouseleave()
-// Cuando se presiona un botón del ratón, _sobre_ un elemento
-mousedown()
-// Cuando se libera un botón presionado del ratón, _sobre_ un elemento
-mouseup()
-// Ejecuta **dos funciones**: al _entrar_ en un elemento, y al _salir_
-hover()
-// Cuando un elemento **input** obtiene el foco
-focus()
-// Cuando un elemento **input** pierde el foco
-blur()
-```
-

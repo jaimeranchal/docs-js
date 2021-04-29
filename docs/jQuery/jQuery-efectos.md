@@ -111,9 +111,9 @@ $("button").click(function(){
 
     Por otra parte, para manejar **animaciones de colores** hay que instalar un [plugin](http://plugins.jquery.com/) adicional
 
-### Valores de propiedades
+### Propiedades CSS
 
-jQuery amplía un poco las reglas de CSS:
+jQuery permite asignar valores relativos o variables a propiedades CSS:
 
 === "Relativos"
     ```javascript

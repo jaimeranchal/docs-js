@@ -90,8 +90,8 @@ nav:
     - jQuery:
         - Introducción: 'jQuery/jQuery-intro.md'
         - 'Manejo del DOM': 'jQuery/jQuery-dom.md'
+        - Eventos: 'jQuery/jQuery-eventos.md'
         - Efectos: 'jQuery/jQuery-efectos.md'
-        - Métodos: 'jQuery/jQuery-html.md'
     - AJAX:
         - Conectar: 'ajax/ajax.md'
         - 'Ajax + jquery': 'ajax/ajax-jquery.md'
