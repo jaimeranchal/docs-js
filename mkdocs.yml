@@ -93,8 +93,9 @@ nav:
         - Eventos: 'jQuery/jQuery-eventos.md'
         - Efectos: 'jQuery/jQuery-efectos.md'
     - AJAX:
-        - Conectar: 'ajax/ajax.md'
-        - 'Ajax + jquery': 'ajax/ajax-jquery.md'
+        - Introducción: 'ajax/ajax.md'
+        - XMLHttpRequest: 'ajax/ajax-xmlhttp.md'
+        - 'Con jQuery': 'ajax/ajax-jquery.md'
         - Fetch: 'ajax/api-fetch.md'
     - Ejemplos:
         - Ajax: 'examples/ajax-ex.md'
